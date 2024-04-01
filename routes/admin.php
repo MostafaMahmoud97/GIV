@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\AdminAuthController;
 use \App\Http\Controllers\Admin\GiftBoxController;
+use \App\Http\Controllers\Admin\BusinessRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,11 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::put("update/{id}",[GiftBoxController::class,"update"]);
         Route::put("change-status/{id}",[GiftBoxController::class,"ChangeStatus"]);
         Route::delete("delete/{id}",[GiftBoxController::class,"destroy"]);
+    });
+
+    Route::group(["prefix" => "business-requests","middleware" => "auth:admin"],function (){
+        Route::get("/",[BusinessRequestController::class,"index"]);
+        Route::get("show/{id}",[BusinessRequestController::class,"show"]);
+        Route::delete("delete/{id}",[BusinessRequestController::class,"delete"]);
     });
 });

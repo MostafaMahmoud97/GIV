@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Api\BusinessRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(["middleware" => "localRequest"],function (){
-
+    Route::post("business-request/store",[BusinessRequestController::class,"store"]);
 });
