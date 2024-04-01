@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("no_branches")->default(0);
             $table->string("store_type")->default("")->nullable();
             $table->string("website")->default("")->nullable();
-            $table->longText("store_address")->default("")->nullable();
+            $table->longText("store_address")->nullable();
             $table->string("first_name");
             $table->string("last_name");
             $table->string("phone_number");
