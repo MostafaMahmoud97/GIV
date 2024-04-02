@@ -30,6 +30,7 @@ Route::group(["middleware" => "localRequest"],function (){
     });
 
     Route::group(["prefix" => "business-requests","middleware" => "auth:admin"],function (){
+        Route::get("count",[BusinessRequestController::class,"CountNewRequest"]);
         Route::get("/",[BusinessRequestController::class,"index"]);
         Route::get("show/{id}",[BusinessRequestController::class,"show"]);
         Route::delete("delete/{id}",[BusinessRequestController::class,"delete"]);

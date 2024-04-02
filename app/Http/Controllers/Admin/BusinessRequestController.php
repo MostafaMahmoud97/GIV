@@ -14,6 +14,10 @@ class BusinessRequestController extends Controller
         $this->service = $service;
     }
 
+    public function CountNewRequest(){
+        return $this->service->CountNewRequest();
+    }
+
     public function index(Request $request){
         return $this->service->index($request);
     }

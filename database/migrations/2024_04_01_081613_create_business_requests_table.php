@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("last_name");
             $table->string("phone_number");
             $table->string("email");
+            $table->boolean("is_view")->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
