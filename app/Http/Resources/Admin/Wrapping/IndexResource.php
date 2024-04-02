@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Admin\GiftBox;
+namespace App\Http\Resources\Admin\Wrapping;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,8 +16,8 @@ class IndexResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "box_name" => $this->name,
-            "box_code" => $this->box_code,
+            "code" => $this->code,
+            "title" => $this->title,
             "price_egy" => $this->price_egy,
             "price_usd" => $this->price_usd,
             "is_active" => $this->is_active

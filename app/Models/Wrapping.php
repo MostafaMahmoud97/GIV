@@ -4,29 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class GiftBox extends Model
+class Wrapping extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         "id",
-        "box_name_en",
-        "box_name_ar",
-        "box_code",
+        "title_ar",
+        "title_en",
+        "code",
+        "color",
+        "material",
         "price_egy",
         "price_usd",
-        "width",
-        "height",
-        "length",
         "is_active"
     ];
 
     protected $hidden = [
         "created_at",
-        "updated_at",
-        "deleted_at"
+        "updated_at"
     ];
 
     public function media(){

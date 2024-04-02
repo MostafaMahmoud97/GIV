@@ -17,8 +17,8 @@ class GiftBoxService
 
     public function index($request){
         $lang = LaravelLocalization::getCurrentLocale();
-        $GiftBox = GiftBox::select("*","box_name_".$lang." as name")->where("box_name_en","like","%".$request->search."%")
-            ->OrWhere("box_name_ar","like","%".$request->search."%")
+        $GiftBox = GiftBox::select("*","box_name_".$lang." as name")
+            ->where("box_name_".$lang,"like","%".$request->search."%")
             ->OrWhere("box_code","like","%".$request->search."%")->paginate(8);
 
         return Response::successResponse(IndexPaginateResource::make($GiftBox),__("admin/gift_box.Boxes have been fetched success"));

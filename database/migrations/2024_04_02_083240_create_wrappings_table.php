@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gift_boxes', function (Blueprint $table) {
+        Schema::create('wrappings', function (Blueprint $table) {
             $table->id();
-            $table->string("box_name_en");
-            $table->string("box_name_ar");
-            $table->string("box_code");
+            $table->string("title_ar");
+            $table->string("title_en");
+            $table->string("code");
+            $table->string("color");
+            $table->string("material");
             $table->double("price_egy");
             $table->double("price_usd");
-            $table->double("width");
-            $table->double("height");
-            $table->double("length");
             $table->boolean("is_active")->default(1);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gift_boxes');
+        Schema::dropIfExists('wrappings');
     }
 };

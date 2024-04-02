@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\AdminAuthController;
 use \App\Http\Controllers\Admin\GiftBoxController;
 use \App\Http\Controllers\Admin\BusinessRequestController;
+use \App\Http\Controllers\Admin\WrappingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,14 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::get("/",[BusinessRequestController::class,"index"]);
         Route::get("show/{id}",[BusinessRequestController::class,"show"]);
         Route::delete("delete/{id}",[BusinessRequestController::class,"delete"]);
+    });
+
+    Route::group(["prefix" => "wrapping","middleware" => "auth:admin"],function (){
+        Route::get("/",[WrappingController::class,"index"]);
+        Route::post("store",[WrappingController::class,"store"]);
+        Route::get("show/{id}",[WrappingController::class,"show"]);
+        Route::put("update/{id}",[WrappingController::class,"update"]);
+        Route::put("change-status/{id}",[WrappingController::class,"ChangeStatus"]);
+        Route::delete("delete/{id}",[WrappingController::class,"destroy"]);
     });
 });
