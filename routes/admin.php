@@ -6,6 +6,7 @@ use \App\Http\Controllers\Admin\AdminAuthController;
 use \App\Http\Controllers\Admin\GiftBoxController;
 use \App\Http\Controllers\Admin\BusinessRequestController;
 use \App\Http\Controllers\Admin\WrappingController;
+use \App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +44,14 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::put("update/{id}",[WrappingController::class,"update"]);
         Route::put("change-status/{id}",[WrappingController::class,"ChangeStatus"]);
         Route::delete("delete/{id}",[WrappingController::class,"destroy"]);
+    });
+
+    Route::group(["prefix" => "categories","middleware" => "auth:admin"],function (){
+        Route::get("/",[CategoryController::class,"index"]);
+        Route::get("help-data",[CategoryController::class,"getHelpData"]);
+        Route::post("store",[CategoryController::class,"store"]);
+        Route::get("show/{id}",[CategoryController::class,"show"]);
+        Route::put("update/{id}",[CategoryController::class,"update"]);
+        Route::delete("delete/{id}",[CategoryController::class,"destroy"]);
     });
 });
