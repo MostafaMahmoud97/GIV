@@ -7,6 +7,7 @@ use \App\Http\Controllers\Admin\GiftBoxController;
 use \App\Http\Controllers\Admin\BusinessRequestController;
 use \App\Http\Controllers\Admin\WrappingController;
 use \App\Http\Controllers\Admin\CategoryController;
+use \App\Http\Controllers\Admin\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,5 +54,15 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::get("show/{id}",[CategoryController::class,"show"]);
         Route::put("update/{id}",[CategoryController::class,"update"]);
         Route::delete("delete/{id}",[CategoryController::class,"destroy"]);
+    });
+
+    Route::group(["prefix" => "stores","middleware" => "auth:admin"],function (){
+        Route::get("/",[StoreController::class,"index"]);
+        Route::post("store",[StoreController::class,"store"]);
+        Route::get("show/{id}",[StoreController::class,"show"]);
+        Route::put("update/{id}",[StoreController::class,"update"]);
+        Route::put("change-password/{id}",[StoreController::class,"changePassword"]);
+        Route::put("change-status/{id}",[StoreController::class,"ChangeStatus"]);
+        Route::delete("delete/{id}",[StoreController::class,"destroy"]);
     });
 });
