@@ -8,6 +8,7 @@ use \App\Http\Controllers\Admin\BusinessRequestController;
 use \App\Http\Controllers\Admin\WrappingController;
 use \App\Http\Controllers\Admin\CategoryController;
 use \App\Http\Controllers\Admin\StoreController;
+use \App\Http\Controllers\Admin\AttributeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,5 +65,16 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::put("change-password/{id}",[StoreController::class,"changePassword"]);
         Route::put("change-status/{id}",[StoreController::class,"ChangeStatus"]);
         Route::delete("delete/{id}",[StoreController::class,"destroy"]);
+    });
+
+    Route::group(["prefix" => "attribute-values","middleware" => "auth:admin"],function (){
+        Route::get("index-attributes",[AttributeController::class,"indexAttributes"]);
+        Route::post("store-attribute",[AttributeController::class,"storeAttribute"]);
+        Route::get("show-attribute/{id}",[AttributeController::class,"showAttribute"]);
+        Route::put("update-attribute/{id}",[AttributeController::class,"updateAttribute"]);
+        Route::delete("delete-attribute/{id}",[AttributeController::class,"destroyAttribute"]);
+        Route::post("store-value",[AttributeController::class,"storeValue"]);
+        Route::put("update-value/{id}",[AttributeController::class,"updateValue"]);
+        Route::delete("delete-value/{id}",[AttributeController::class,"destroyValue"]);
     });
 });
