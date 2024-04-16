@@ -11,7 +11,8 @@ class Attribute extends Model
 
     protected $fillable = [
         "id",
-        "title"
+        "title_ar",
+        "title_en"
     ];
 
     protected $hidden = [

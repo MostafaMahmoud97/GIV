@@ -22,7 +22,8 @@ class AttributeController extends Controller
 
     public function storeAttribute(Request $request){
         $Validator = Validator::make($request->all(),[
-            "title" => "required|string",
+            "title_ar" => "required|string",
+            "title_en" => "required|string",
             "values" => "required|string"
         ]);
         if ($Validator->fails()){
@@ -38,7 +39,8 @@ class AttributeController extends Controller
 
     public function updateAttribute($id,Request $request){
         $Validator = Validator::make($request->all(),[
-            "title" => "required|string"
+            "title_ar" => "required|string",
+            "title_en" => "required|string"
         ]);
         if ($Validator->fails()){
             return Response::errorResponse($Validator->errors());

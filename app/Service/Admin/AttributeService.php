@@ -17,7 +17,8 @@ class AttributeService
 
     public function storeAttribute($request){
         $Attribute = Attribute::create([
-            "title" => $request->title
+            "title_ar" => $request->title_ar,
+            "title_en" => $request->title_en
         ]);
 
         $Values = explode(",",$request->values);
