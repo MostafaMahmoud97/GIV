@@ -9,6 +9,8 @@ use \App\Http\Controllers\Admin\WrappingController;
 use \App\Http\Controllers\Admin\CategoryController;
 use \App\Http\Controllers\Admin\StoreController;
 use \App\Http\Controllers\Admin\AttributeController;
+use \App\Http\Controllers\Admin\ProductController;
+use \App\Http\Controllers\Admin\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,5 +78,31 @@ Route::group(["middleware" => "localRequest"],function (){
         Route::post("store-value",[AttributeController::class,"storeValue"]);
         Route::put("update-value/{id}",[AttributeController::class,"updateValue"]);
         Route::delete("delete-value/{id}",[AttributeController::class,"destroyValue"]);
+    });
+
+    Route::group(["prefix" => "product","middleware" => "auth:admin"],function (){
+        Route::get("help-data",[ProductController::class,"help_data"]);
+        Route::get("/",[ProductController::class,"index"]);
+        Route::post("store",[ProductController::class,"store"]);
+        Route::get("show/{id}",[ProductController::class,"show"]);
+        Route::get("edit/{id}",[ProductController::class,"edit"]);
+        Route::put("change-status/{id}",[ProductController::class,"change_status"]);
+        Route::group(["prefix" => "update"],function (){
+            Route::put("details/{id}",[ProductController::class,"update_details"]);
+            Route::delete("delete-image/{id}",[ProductController::class,"deleteImage"]);
+            Route::post("add-images",[ProductController::class,"addImages"]);
+            Route::put("pricing/{id}",[ProductController::class,"update_pricing"]);
+            Route::put("pricing/{id}",[ProductController::class,"update_pricing"]);
+            Route::put("inventory/{id}",[ProductController::class,"update_inventory"]);
+        });
+    });
+
+    Route::group(["prefix" => "inventory","middleware" => "auth:admin"],function (){
+        Route::get("/",[InventoryController::class,"index"]);
+        Route::get("product-media",[InventoryController::class,"getProductMedia"]);
+        Route::put("change-image/{id}",[InventoryController::class,"change_image"]);
+        Route::put("change-available/{id}",[InventoryController::class,"change_available"]);
+        Route::delete("delete-item/{id}",[InventoryController::class,"destroy"]);
+
     });
 });
